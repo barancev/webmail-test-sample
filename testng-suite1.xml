@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mail sending" >
+  <test verbose="2" name="Iteration 1">
+    <classes>
+      <class name="com.example.tests.SendMessageTest"/>
+    </classes>
+  </test> <!-- Default test -->
+  <test verbose="2" name="Iteration 2" preserve-order="true">
+    <classes>
+      <class name="com.example.tests.ReplyTest"/>
+      <class name="com.example.tests.ForwardTest"/>
+    </classes>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite -->

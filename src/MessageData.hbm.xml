@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <class name="com.example.fw.MessageData" table="awm_messages">
+ <id name="id" column="id_msg" ></id>
+ <property name="from" column="from_msg" />
+ <property name="to" column="to_msg" />
+ <property name="subject" column="subject" />
+ <property name="content" column="body_text" />
+ </class>
+</hibernate-mapping>

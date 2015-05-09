@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Full suite">
+  <parameter name="configFile" value="config.properties"></parameter>
+  <test verbose="2" name="Full">
+    <packages>
+      <package name="com.example.tests">
+      </package>
+    </packages>
+  </test> <!-- Default test -->
+</suite> <!-- Default suite -->

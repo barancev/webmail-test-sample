@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="selenium-training">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../Tools/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <property name="libs" value="C:/Tools"/>
+    <path id="Selenium 2.0.userclasspath">
+        <pathelement location="${libs}/selenium-server-standalone-2.21.0.jar"/>
+    </path>
+    <path id="Hibernate.userclasspath">
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/antlr-2.7.7.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/classmate-0.5.4.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/commons-collections-3.2.1.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/dom4j-1.6.1.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/hibernate-commons-annotations-4.0.0.CR2.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/hibernate-core-4.0.0.CR4.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/jandex-1.0.3.Final.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/javassist-3.12.1.GA.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/jboss-logging-3.0.0.GA.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/required/jboss-transaction-api_1.1_spec-1.0.0.Final.jar"/>
+        <pathelement location="${libs}/hibernate-release-4.0.0.CR4/lib/jpa/hibernate-entitymanager-4.0.0.CR4.jar"/>
+    </path>
+    <path id="MySQL.userclasspath">
+        <pathelement location="c:/wamp/bin/mysql/mysql5.5.8/mysql-connector-java-5.1.14/mysql-connector-java-5.1.14-bin.jar"/>
+    </path>
+    <path id="commons-codec.userclasspath"/>
+    <path id="selenium-training.classpath">
+        <pathelement location="bin"/>
+        <path refid="Selenium 2.0.userclasspath"/>
+        <path refid="Hibernate.userclasspath"/>
+        <path refid="MySQL.userclasspath"/>
+        <path refid="commons-codec.userclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="selenium-training.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+	<taskdef resource="testngtasks" classpathref="selenium-training.classpath"/>
+	<target name="run-tests" depends="build">
+        <testng classpathref="selenium-training.classpath">
+            <xmlfileset dir="." includes="testng-suite-valid.xml"/>
+        </testng>
+	</target>
+    <target name="run-suite0" depends="build">
+        <testng classpathref="selenium-training.classpath">
+            <xmlfileset dir="." includes="testng-suite0.xml"/>
+        </testng>
+    </target>
+</project>

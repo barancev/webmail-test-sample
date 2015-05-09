@@ -1,0 +1,12 @@
+user@localhost
+subject1
+text1
+
+test1
+.
+user@localhost
+subject2
+text2
+
+test2
+.
