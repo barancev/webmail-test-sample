@@ -1,11 +1,10 @@
 package com.example.tests;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -79,7 +78,7 @@ public class SendMessageTest extends TestBase {
       .send();
 
     // perform checks
-    assertTrue(checkNewMail(INBOX, before));
+    assertThat(checkNewMail(INBOX, before), is(true));
     MessageObject message = mail.openFolder(INBOX).openMessageByIndex(0);
     assertThat(message.from.getText(), equalTo(address));
     assertThat(message.subject.getText(), equalTo(subject));

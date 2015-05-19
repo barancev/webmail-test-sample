@@ -1,7 +1,5 @@
 package com.example.tests;
 
-import java.io.File;
-
 import org.testng.annotations.Test;
 
 public class MoveMessageToTrash extends TestBase {

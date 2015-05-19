@@ -5,14 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -32,7 +28,7 @@ public class TestBase {
     try {
       properties.load(new FileReader(new File(configFile)));
     } catch (IOException e) {
-      // ignore and use defaiult properties
+      // ignore and use default properties
     }
     mail = new WebMailManager(properties);
     mail.openMainPage();

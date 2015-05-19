@@ -1,6 +1,6 @@
 package com.example.fw;
 
-import static org.junit.Assert.fail;
+import static org.testng.Assert.fail;
 
 import java.util.Properties;
 

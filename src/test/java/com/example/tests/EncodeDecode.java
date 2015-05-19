@@ -13,7 +13,7 @@ public class EncodeDecode {
 
   @Test
   public void testUntitled() throws Exception {
-    byte[] encoded = Base64.encodeBase64("Проверочный текст".getBytes());
+    byte[] encoded = Base64.encodeBase64("РџСЂРѕРІРµСЂРѕС‡РЅС‹Р№ С‚РµРєСЃС‚".getBytes());
     System.out.println(new String(encoded));
 
     byte[] decoded = Base64.decodeBase64(encoded);
