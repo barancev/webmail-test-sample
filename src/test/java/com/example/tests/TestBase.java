@@ -22,11 +22,11 @@ public class TestBase {
   @Parameters({"configFile"})
   public void setUp(@Optional String configFile) throws Exception {
     if (configFile == null) {
-      configFile = System.getProperty("configFile", "config.properties");
+      configFile = System.getProperty("configFile", "/config.properties");
     }
     Properties properties = new Properties();
     try {
-      properties.load(new FileReader(new File(configFile)));
+      properties.load(TestBase.class.getResourceAsStream(configFile));
     } catch (IOException e) {
       // ignore and use default properties
     }
@@ -36,7 +36,7 @@ public class TestBase {
   
   @BeforeMethod
   public void login() {
-    mail.login("user@localhost", "user");
+    mail.login("user1@localhost", "user1");
   }
 
   //@AfterMethod

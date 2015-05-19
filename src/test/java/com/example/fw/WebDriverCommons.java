@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+import ru.stqa.selenium.factory.WebDriverFactory;
 
 public class WebDriverCommons {
 
@@ -39,23 +40,18 @@ public class WebDriverCommons {
 
   public WebDriverCommons(Properties properties) throws Exception {
     this.properties = properties;
-    String browser = properties.getProperty("browser", "firefox");
 
-    DesiredCapabilities capabilities = null;
-    if (browser.equals("ie")) {
-      capabilities  = DesiredCapabilities.internetExplorer();
-    } else {
-      capabilities = DesiredCapabilities.firefox();
+    DesiredCapabilities capabilities = new DesiredCapabilities();
+    for (String name : properties.stringPropertyNames()) {
+      capabilities.setCapability(name, properties.getProperty(name));
     }
-    
-    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
-        capabilities);
+    driver = WebDriverFactory.getDriver(capabilities);
 
     baseUrl = properties.getProperty("baseUrl", "http://localhost/");
     
     uimap = new Properties();
-    uimap.load(new FileReader(
-        new File(properties.getProperty("uimap", "uimap.properties"))));
+    uimap.load(WebDriverCommons.class.getResourceAsStream(
+        properties.getProperty("uimap", "/uimap.properties")));
   }
 
   protected By uimap(String key) {
